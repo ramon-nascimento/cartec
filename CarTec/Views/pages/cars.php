@@ -26,6 +26,8 @@ $cars = Database::get("*", from: "cars", where: "owner_id = {$_SESSION['User']['
           <th>Marca / Modelo</th>
           <th>Versão</th>
           <th>Tipo</th>
+          <th>Editar</th>
+          <th>Remover</th>
         </tr>
       </thead>
 
@@ -40,6 +42,16 @@ $cars = Database::get("*", from: "cars", where: "owner_id = {$_SESSION['User']['
               <td><?= $car['model'] ?></td>
               <td><?= $car['version'] ?></td>
               <td><?= $carType['description'] ?></td>
+              <td class="actions edit">
+                <a href="?editCar=<?= $car['id'] ?>">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </a>
+              </td>
+              <td class="actions delete">
+                <a href="?deleteCar=<?= $car['id'] ?>">                
+                  <i class="fa-solid fa-ban"></i>
+                </a>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>

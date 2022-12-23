@@ -323,11 +323,16 @@ li {
   color: rgb(var(--text-color));
 }
 
-.table-item-action {
+.table-row .actions {
   text-align: center;
+  cursor: pointer;
 }
 
-.table-item-action a {
+.table-row .actions.delete a {
+  color: #e80a23 !important;
+}
+
+.table-row .actions a {
   font-size: 80%;
 }
 
@@ -404,6 +409,17 @@ li {
 
 .error {
   background-color: #e80a23;
+  position: absolute;
+  padding: .4rem;
+  margin: 1rem;
+  border-radius: .2rem;
+  top: 1rem;
+  animation: error-slide 5s ease-in-out forwards;
+  z-index: 99;
+}
+
+.success {
+  background-color: rgb(var(--primary-color));
   position: absolute;
   padding: .4rem;
   margin: 1rem;

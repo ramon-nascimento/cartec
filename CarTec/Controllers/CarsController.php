@@ -29,6 +29,23 @@ class CarsController {
 
         CarsModel::handleAddType($type);        
       }
+    } else if (isset($_GET['deleteCar'])) {
+      $carId = $_GET['deleteCar'];
+
+      CarsModel::handleDelete($carId);
+    } else if (isset($_GET['editCar'])) {
+      MainView::render('includes/edit-car');
+
+      if (isset($_POST['submitEdit'])) {
+        $id = $_GET['editCar'];
+        $name = $_POST['carName'];
+        $plate = $_POST['carPlate'];
+        $model = $_POST['carModel'];
+        $version = $_POST['carVersion'];
+        $type = $_POST['carType'];
+
+        CarsModel::handleUpdate($id, $name, $plate, $model, $version, $type);
+      }
     }
   }
 }

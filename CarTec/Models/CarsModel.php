@@ -37,4 +37,22 @@ class CarsModel {
     Database::insertInto("car_type", [$type]);
     Utils::redirectTo('cars');
   }
+  
+  public static function handleDelete($carId) {
+    Database::deleteFrom('cars', $carId);
+
+    Utils::redirectTo('cars');
+  }
+
+  public static function handleUpdate($id, $name, $plate, $model, $version, $type) {
+    Database::edit('cars', [
+      'name' => $name, 
+      'plate' => $plate, 
+      'model' => $model, 
+      'version' => $version, 
+      'type' => $type
+    ], "id = '{$id}'");
+
+    Utils::redirectTo('cars');
+  }
 }

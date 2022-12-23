@@ -70,4 +70,23 @@ class Database {
 
     $conn->exec($query);
   }
+
+  public static function edit($table, $data, $where) {
+    $conn = self::conn();
+
+    foreach($data as $key => $value) {
+      $values[] = "{$key} = '{$value}'";
+    }
+    
+    $values = implode(', ', $values);
+    $query = "UPDATE {$table} SET {$values} WHERE {$where}";
+
+    $conn->exec($query);
+  }
+
+  public static function deleteFrom($table, $data) {
+    $conn = self::conn();
+
+    $conn->exec("DELETE FROM {$table} WHERE id = {$data}");
+  }
 }
