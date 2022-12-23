@@ -84,9 +84,13 @@ class Database {
     $conn->exec($query);
   }
 
-  public static function deleteFrom($table, $data) {
+  public static function deleteFrom($table, $where = '') {
     $conn = self::conn();
 
-    $conn->exec("DELETE FROM {$table} WHERE id = {$data}");
+    $query = "DELETE FROM {$table}";
+
+    if ($where) $query .= " WHERE {$where}";
+
+    $conn->exec($query);
   }
 }

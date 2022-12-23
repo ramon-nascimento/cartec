@@ -34,6 +34,8 @@ $maintenances = Database::get(
           <th>Versão</th>
           <th>Serviço</th>
           <th>Data</th>
+          <th>Editar</th>
+          <th>Remover</th>
         </tr>
       </thead>
 
@@ -49,6 +51,16 @@ $maintenances = Database::get(
               <td><?= $car['version'] ?></td>
               <td><?= $maintenance['description'] ?></td>
               <td><?= $maintenanceDate->format('d/m/Y') ?></td>
+              <td class="actions edit">
+                <a href="?editMaintenance=<?= $maintenance['id'] ?>">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </a>
+              </td>
+              <td class="actions delete">
+                <a href="?deleteMaintenance=<?= $maintenance['id'] ?>">                
+                  <i class="fa-solid fa-ban"></i>
+                </a>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>

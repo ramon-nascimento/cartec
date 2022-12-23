@@ -39,8 +39,9 @@ class CarsModel {
   }
   
   public static function handleDelete($carId) {
-    Database::deleteFrom('cars', $carId);
-
+    Database::deleteFrom('cars', where: "id = {$carId}");
+    Database::deleteFrom('maintenances', where: "car_id = {$carId}");
+    
     Utils::redirectTo('cars');
   }
 

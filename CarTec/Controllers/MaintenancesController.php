@@ -26,6 +26,27 @@ class MaintenancesController {
         ]);
         Utils::redirectTo('maintenances');
       }
+    } else if (isset($_GET['editMaintenance'])) {
+      MainView::render('includes/edit-maintenance');
+
+      if (isset($_POST['submitEditMaintenance'])) {
+        $carID = $_POST['maintenanceCar'];
+        $maintenanceDescription = $_POST['maintenanceDescription'];
+        $maintenanceDate = $_POST['maintenanceDate'];
+
+        Database::edit("maintenances", [
+          "car_id" => $carID,
+          "description" => $maintenanceDescription,
+          "date" => $maintenanceDate
+        ], "id = {$_GET['editMaintenance']}");
+
+        Utils::redirectTo('maintenances');
+      }
+    } else if (isset($_GET['deleteMaintenance'])) {
+      $maintenanceId = $_GET['deleteMaintenance'];
+
+      Database::deleteFrom("maintenances", "id = {$maintenanceId}");
+      Utils::redirectTo('maintenances');
     }
   }
 }
